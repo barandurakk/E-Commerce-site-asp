@@ -1,0 +1,32 @@
+﻿@using UniETicaret.MvcWeb.Models;
+@model IEnumerable<UrunModel>
+
+
+<div class="row">
+    @foreach (var urun in Model)
+    {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img class="card-img-top" src="/Upload/@urun.Resim" alt="@urun.Isim">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="/Home/Detaylar/@urun.Id"> @urun.Isim</a>
+                    </h4>
+                    <p class="card-text pt-2 description">
+                        @urun.Aciklama
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted product-price">
+                        <i class="fa fa-try" aria-hidden="true"></i>
+                        @urun.Fiyat
+                    </small>
+                    <a href="/Home/Detaylar/@urun.Id" class="btn btn-default btn-sm float-right">
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        Ürünü incele
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

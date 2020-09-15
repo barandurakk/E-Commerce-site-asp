@@ -1,0 +1,82 @@
+﻿@model UniETicaret.MvcWeb.Models.UserDetailModel
+
+@{
+    ViewBag.Title = "UserRoleEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@using (Html.BeginForm())
+{
+
+<input type="hidden" name="userId" value="@Model.User.Id" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Kullanıcı Detayı</h2>
+            <hr />
+
+            <dl class="row">
+
+                <dt class="col-sm-3">Kullanıcı ID</dt>
+                <dd class="col-sm-9">@Model.User.Id</dd>
+
+                <dt class="col-sm-3">Kullanıcı Adı</dt>
+                <dd class="col-sm-9">@Model.User.UserName
+
+                <dt class="col-sm-3">İsim Soyisim</dt>
+                <dd class="col-sm-9">@Model.User.Name @Model.User.Surname</dd>
+            </dl>
+            <hr />
+            <dl class="row">
+
+                <dt class="col-sm-3">Yetkiler</dt>
+                <dd class="col-sm-9">
+                    @foreach (var user in Model.UserRoles)
+                    {
+
+                        if (@user.Contains("admin"))
+                        {
+                            <span class="badge badge-success"> @user</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning"> @user</span>
+                        }
+
+                    }
+                <dd>
+                    <hr />
+                <dt class="col-sm-3">Yetkileri Düzenle</dt>
+                <dd class="col-sm-9">
+
+                    @foreach (var roles in Model.Roles)
+                    {
+                        if (roles.Name == "admin")
+                        {
+                            <span class="badge badge-success"> @roles.Name</span> <input type="checkbox" name="RoleToAdd" value="@roles.Id" />
+                        }
+                        else
+                        {
+                            <span class="badge badge-warning"> @roles.Name</span> <input type="checkbox" name="RoleToAdd" value="@roles.Id" />
+                        }
+
+
+
+
+
+                    }
+                    !Bu özellik henüz çalışıyor fixleyeceğiz!
+
+                </dd>
+
+
+
+
+            </dl>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Güncelle</button>
+</div>
+
+    
+}

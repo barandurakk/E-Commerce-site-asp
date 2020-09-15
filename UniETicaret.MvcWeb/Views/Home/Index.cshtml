@@ -1,0 +1,32 @@
+﻿@using UniETicaret.MvcWeb.Models;
+@model IEnumerable<UrunModel> 
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3" style="color:white">Tüm Avantajlardan Yararlanmak İçin Şimdi Üye Olun!!</h1>            
+            <hr class="my-4">
+            <p style="color:white"></p>
+            <p class="lead">
+                <a class="btn btn-warning btn-lg" href="/Account/Register" role="button">Şimdi Üye Ol!</a>
+            </p>
+        </div>
+    </div>
+
+
+<div class="container pb-5">
+
+    @Html.Partial("_UrunListesi", Model)
+  
+</div>
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<UniETicaret.MvcWeb.Models.UserListModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table" >
+    <thead class="thead-dark" style="background-color: #212529 !important; color: white;">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Kullanıcı Adı</th>
+            <th scope="col">Email</th>
+            <th scope="col">Yetkiler</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <th scope="row" colspan="5">Sistemde Kayıtı Kullanıcı Bulunamad!</th>
+
+            </tr>
+        }       
+        else
+        {
+        foreach (var user in Model)
+        {
+        <tr>
+            <th scope="row">@user.UserId</th>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>
+                @if (@user.Role.Contains("admin"))
+                {
+                <span class="badge badge-success"> @user.Role</span>
+                }
+                else {
+                <span class="badge badge-warning"> @user.Role </span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Sil", "Delete", new { id = user.UserId }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Silmek istediğinize emin misiniz? " + user.UserName + "?')" })
+                @Html.ActionLink("Yetkileri Düzenle", "UserRoleEdit", new { id = user.UserId }, new { @class = "btn btn-warning btn-sm" })
+            </td>
+        </tr>
+        }
+
+        }
+    </tbody>
+</table>
+
+

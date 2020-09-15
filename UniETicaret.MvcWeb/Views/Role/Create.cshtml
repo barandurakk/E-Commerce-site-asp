@@ -1,0 +1,24 @@
+﻿@model string
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Rol Oluştur</h2>
+<hr />
+
+
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+
+    <div class="form-group">
+
+        <label>Rol İsmi</label>
+        <input name="name" value="@Model" class="form-control" />
+
+    </div>
+    <button type="submit" class="btn btn-primary">Ekle</button>
+
+}
+
